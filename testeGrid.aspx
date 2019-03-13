@@ -13,6 +13,8 @@
 
 <script type="text/javascript">
     <%--Pega informação do id quando clica--%>
+
+    var nome = 'rafael';
     var CurID = '';
         function RowSelected(sender, eventArgs) {
             CurID = eventArgs.getDataKeyValue("id");
@@ -21,6 +23,10 @@
     <%--Abre uma janeja dentro da janela principal--%>
     function abrirRadWindow(){
         OpenRadWindow('RadWindow1', 'Default.aspx', '', '', 'TEste', '90%', '90%', 'Close|Reload|Move|Maximize|Resize');
+    }
+    <%--PAremetros para passar chaves na URL--%>
+      function abrirRadWindow2(){
+        OpenRadWindow('RadWindow1', 'testeQueryString.aspx', 'iduser|usuario', ''+ CurID +'|'+ nome +'', 'TEste', '90%', '90%', 'Close|Reload|Move|Maximize|Resize');
     }
     <%--Atualiza a pagina apos gechar radWindow--%>
     function ClientClose(sender, eventArgs) {
@@ -59,8 +65,8 @@
                 <asp:Button ID="Button2" runat="server" Text="Confirmação" OnClientClick ="return blockConfirm('DEseja excluir o registro?', 'Confirmação', 300, 100, this);return false" />
                 <asp:Button ID="Button1" runat="server" Text="Alerta" OnClientClick="radalert('TESTE',300,100,'Mensagem');return false " />
                 <asp:Button ID="Button3" runat="server" Text="Button" OnClientClick ="abrirRadWindow();return false"  />
-                
-                
+                   <asp:Button ID="Button4" runat="server" Text="TEste Query String" OnClientClick ="abrirRadWindow2();return false"  />
+                <asp:Button ID="Button5" runat="server" Text="TEste Session"  />
                 
                 <%--MasterTableView-EditMode="Batch" tipo de edição do grid--%>
             <telerik:RadGrid ID="RadGrid1" runat="server" MasterTableView-EditMode="batch" AllowAutomaticUpdates="True" AllowAutomaticDeletes="true" AllowFilteringByColumn="True" AllowPaging="True"  AllowSorting="True" Culture="pt-BR" DataSourceID="DS_Users" Skin="Telerik">
@@ -72,7 +78,7 @@
                     <Selecting  AllowRowSelect="True"  />                 
                 </ClientSettings>
                  <%-- CommandItemDisplay="TopAndBottom" menu adicionar/salvar/cancelar ADD MASTERTableView--%>
-                <MasterTableView  AutoGenerateColumns="False" CommandItemDisplay="TopAndBottom"  DataKeyNames="id,nome" ClientDataKeyNames="id" DataSourceID="DS_Users">
+                <MasterTableView  AutoGenerateColumns="False" CommandItemDisplay="top"  DataKeyNames="id,nome" ClientDataKeyNames="id" DataSourceID="DS_Users">
                      <BatchEditingSettings EditType="Cell" />
                    <%-- edita nome forms --%>
                     <EditFormSettings>
@@ -97,9 +103,9 @@
                         </telerik:GridBoundColumn>
                         <telerik:GridBoundColumn AutoPostBackOnFilter="true" ShowFilterIcon="false" DataField="nome" FilterControlAltText="Filter nome column" HeaderText="NOME" SortExpression="nome" UniqueName="nome">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="email" FilterControlAltText="Filter email column" HeaderText="EMAIL" SortExpression="email" UniqueName="email">
+                        <telerik:GridBoundColumn    DataField="email" FilterControlAltText="Filter email column" HeaderText="EMAIL" SortExpression="email" UniqueName="email">
                         </telerik:GridBoundColumn>
-                        <telerik:GridNumericColumn DataField="idade" DataType="System.Int32" FilterControlAltText="Filter idade column" HeaderText="IDADE" SortExpression="idade" UniqueName="idade">
+                        <telerik:GridNumericColumn   DataField="idade" DataType="System.Int32" FilterControlAltText="Filter idade column" HeaderText="IDADE" SortExpression="idade" UniqueName="idade">
                         </telerik:GridNumericColumn>
                          <%--item template--%>
                        <telerik:GridTemplateColumn UniqueName="template" HeaderText="TEMPLATE">

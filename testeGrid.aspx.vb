@@ -4,7 +4,21 @@ Imports Telerik.Web.UI
 Partial Class testeGrid
     Inherits System.Web.UI.Page
 
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If String.IsNullOrEmpty(Session("user")) Then
+            Response.Redirect("Default2.aspx")
+        End If
 
+        'Pegar id lado servidor
+        Dim id As Integer = 0
+        If RadGrid1.SelectedItems.Count > 0 Then
+            Dim dataitem As GridDataItem = RadGrid1.SelectedItems(0)
+            id = dataitem.GetDataKeyValue("id")
+            'Response.Write(id)
+        End If
+
+
+    End Sub
 
     Private Sub RadGrid1_ItemDataBound(sender As Object, e As GridItemEventArgs) Handles RadGrid1.ItemDataBound
         If TypeOf (e.Item) Is GridDataItem Then
@@ -22,16 +36,7 @@ Partial Class testeGrid
             End If
         End If
     End Sub
-    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'Pegar id lado servidor
-        Dim id As Integer = 0
-        If RadGrid1.SelectedItems.Count > 0 Then
-            Dim dataitem As GridDataItem = RadGrid1.SelectedItems(0)
-            id = dataitem.GetDataKeyValue("id")
-            'Response.Write(id)
-        End If
 
-    End Sub
 
     Protected Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim id As Integer = 0
@@ -51,5 +56,10 @@ Partial Class testeGrid
 
 
         End If
+    End Sub
+    Protected Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim js As String = String.Format("radalert('{0}',380, 170, 'Mensagem');", Session("user"))
+        ScriptManager.RegisterStartupScript(Me, Me.[GetType](), "radalert", js, True)
+
     End Sub
 End Class
