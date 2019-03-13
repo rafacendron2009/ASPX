@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Teste Query</title>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-            <telerik:RadGrid ID="RadGrid1" runat="server" Culture="pt-BR" DataSourceID="SqlDataSource1">
+            <telerik:RadScriptManager   ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
+            <telerik:RadGrid ID="RadGrid1"  Height="50%" runat="server" Culture="pt-BR" DataSourceID="SqlDataSource1">
 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                 <MasterTableView AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1">
                     <Columns>
